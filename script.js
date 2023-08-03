@@ -99,7 +99,7 @@ function ModificarInterval(ms) {
             var dmg = parseInt($("#IdleDmg").text());
 
             var Perc = $("#IdleCritHit").text();
-
+            //cambiar esto a Perc/100
             if (Perc.length == 1) {
                 Perc = "0.0" + Perc
             } else if (Perc.length == 2) {
