@@ -26,6 +26,8 @@ function Pixel(px, dmg) {
             });
 
             $(".Cuadrado").attr("title", parseInt($(".Cuadrado").attr("title")) + 1)
+
+            $("#Nivel").text($(".Cuadrado").attr("title"));
             $('.Pixel').text($(".Cuadrado").attr("title"));
 
             Guardado()
@@ -168,11 +170,9 @@ function Guardado() {
 }
 
 function RecuperarGuardado() {
-    var Pixeles = getCookie("Pixeles");
-    if (Pixeles != null && Pixeles != '' && Pixeles != 'NaN') {
-        $("#Pixeles").text(Pixeles);
-    }
 
+    $("#Pixeles").text(getCookie("Pixeles"));
+    $("#Nivel").text(getCookie("Cuadrado_Title"));
     $(".Cuadrado").attr("title", getCookie("Cuadrado_Title"));
 
     $("#Dano").text(getCookie("Dano"));
@@ -186,4 +186,11 @@ function RecuperarGuardado() {
 
     $("#IdleCritHit").text(getCookie("IdleCritHit"));
     $("#IdleCritHit_Cost").text(getCookie("IdleCritHit_Cost"));
+}
+
+function HardReset() {
+    if(confirm("Esta seguro de eliminar todo?")){
+        document.cookie='';
+        location.reload();
+    }
 }

@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prueba Incremental</title>
+    <link rel="icon" type="image/x-icon" href="./favicon.ico">
+
     <script type="text/javascript" src="script.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
@@ -18,9 +20,20 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card" style="margin-top: 1.5vh;">
-                        <div class="card-header text-center">
-                            <h3>Pruebas</h3>
-                            <p>Tienes <span id="Pixeles">0</span> pixeles.</p>
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col-3">
+                                    <h3>Nivel <span id="Nivel">1</span></h3>
+                                    <p>??</p>
+                                </div>
+                                <div class="col-6 text-center">
+                                    <h3>Pruebas</h3>
+                                    <p>Tienes <span id="Pixeles">0</span> pixeles.</p>
+                                </div>
+                                <div class="col-3 text-center">
+                                    <button class="btn btn-info" onclick="HardReset()">Hard Reset</button>
+                                </div>
+                            </div>
                         </div>
                         <div class="card-body">
                             <div class="row">

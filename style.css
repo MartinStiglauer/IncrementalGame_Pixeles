@@ -4,6 +4,16 @@
     user-select: none; /* Standard syntax */
 }
 
+.card-header {
+    background-color: #3a3afd;
+    color: #5dedfb;
+    font-family: monospace;
+}
+
+.btn {
+    height: 100%;
+}
+
 .Mejoras {
     height: 80px;
     width: 100%;
