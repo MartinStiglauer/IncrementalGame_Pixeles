@@ -21,9 +21,9 @@ p {
 }
 
 .Cuadrado {
-    width: 80%;
+    width: 90%;
     aspect-ratio: 1;
-    margin-left: 10%;
+    margin-left: 5%;
     border: 2px solid blue;
     background-color: #3a3afd;
 }

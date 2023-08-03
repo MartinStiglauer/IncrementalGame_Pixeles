@@ -88,6 +88,33 @@ function ActualizarPrecio(id) {
     $("#" + id).text(Math.round(parseInt($("#" + id).text()) * 1.12));
 }
 
+function ModificarInterval(ms) {
+    clearInterval(Interval);
+    var Interval = setInterval(function () {
+        var IdleHitters = parseInt($("#IdleHitters").text());
+        for (var i = 0; i < IdleHitters; i += 1) {
+            var randomIndex = Math.floor(Math.random() * $('.Pixel').length);
+            var dmg = parseInt($("#IdleDmg").text());
+
+            var Perc = $("#IdleCritHit").text();
+
+            if (Perc.length == 1) {
+                Perc = "0.0" + Perc
+            } else if (Perc.length == 2) {
+                Perc = "0." + Perc
+            } else if (Perc.length == 3) {
+                Perc = Perc
+            }
+
+            if (Math.random() < Perc) {
+                dmg = dmg * 2;
+            }
+
+            Pixel($('.Pixel')[randomIndex], dmg);
+        }
+    }, ms);
+}
+
 function setCookie(cname, cvalue, exdays) {
     const d = new Date();
     d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
