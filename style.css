@@ -1,0 +1,54 @@
+.content {
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+}
+
+.Mejoras {
+    height: 80px;
+    width: 100%;
+    border: 2px solid blue;
+    margin-bottom: 2px;
+    margin-left: 10px;
+    background-color: #3a3afd;
+    color: #5dedfb;
+    font-family: monospace;
+}
+
+p {
+    margin-bottom: 0px !important;
+    margin-left: 10px;
+}
+
+.Cuadrado {
+    width: 80%;
+    aspect-ratio: 1;
+    margin-left: 10%;
+    border: 2px solid blue;
+    background-color: #3a3afd;
+}
+
+.Pixel {
+    /*border: 1px solid black;*/
+    background-color: #031683;
+    width: 5%;
+    aspect-ratio: 1;
+    display: inline-block;
+    overflow: auto;
+    color: #5dedfb;
+}
+
+.Ticado {
+    /*border: 1px solid black;*/
+    width: 5%;
+    aspect-ratio: 1;
+    display: inline-block;
+    background-color: #3f2dff;
+    overflow: auto;
+    color: #5dedfb;
+}
+
+.Disabled {
+    pointer-events: none;
+    opacity: 0.5;
+}
