@@ -23,15 +23,17 @@
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-3">
-                                    <h3>Nivel <span id="Nivel">1</span></h3>
-                                    <p>??</p>
+                                    <h3>Nivel <span id="Nivel">1</span><span class="Subtitulo">To next level: <span id="PixelToNextLvl">289</span> pixels.</span></h3>
+                                    <p id="Interrogations">??????</p>
+                                    <p id="PixCoins" class="Ocultar">PixCoins: <span id="ActualPixCoins">0</span>. On reset you will have: <span id="NextPixCoins">0.1</span>.</p>
                                 </div>
                                 <div class="col-6 text-center">
-                                    <h3>Pruebas</h3>
-                                    <p>Tienes <span id="Pixeles">0</span> pixeles.</p>
+                                    <h3>Incremental Pixel Game</h3>
+                                    <p>You have <span id="Pixeles">0</span> pixels.</p>
                                 </div>
                                 <div class="col-3 text-center">
-                                    <button class="btn btn-info" onclick="HardReset()">Hard Reset</button>
+                                    <!-- <button class="btn btn-info" onclick="HardReset()">Hard Reset</button> -->
+                                    <button id="Btn-ResetGame" class="btn btn-info Ocultar" onclick="ResetGame()">Reset</button>
                                 </div>
                             </div>
                         </div>
@@ -39,6 +41,9 @@
                             <div class="row">
                                 <div class="col-1"></div>
                                 <div class="col-3">
+                                    <div class="Titles">
+                                        <h3>Click Upgrades</h3>
+                                    </div>
                                     <div class="Mejoras" onclick="ActiveDmg()">
                                         <div class="row">
                                             <div class="col-8">
@@ -64,6 +69,26 @@
                                                 <p>------------</p>
                                                 <p><span id="ExtraHits_Cost">100</span> pix</p>
                                                 <p>------------</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div id="PixCoinsUpgrades" class="Ocultar">
+                                        <div class="Titles">
+                                            <h3>PixCoins Upgrades</h3>
+                                        </div>
+                                        <div class="Mejoras" onclick="IdleHittersInterval()">
+                                            <div class="row">
+                                                <div class="col-8">
+                                                    <p class="Titulo">Idle Hitters Interval</p>
+                                                    <p class="Incremento">-0.1 secconds reduce interval</p>
+                                                    <p class="Total">Each idle hitter clicks every <span id="IdleHittersInterval">5</span></p>
+                                                </div>
+                                                <div class="col-4 text-center">
+                                                    <p>------------</p>
+                                                    <p><span id="IdleHittersInterval_Cost">0.1</span> PixCoins</p>
+                                                    <p>------------</p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -362,6 +387,9 @@
                                     </div>
                                 </div>
                                 <div class="col-3">
+                                    <div class="Titles">
+                                        <h3>Idle Hitters Upgrades</h3>
+                                    </div>
                                     <div class="Mejoras" onclick="IdleHitters()">
                                         <div class="row">
                                             <div class="col-8">
@@ -385,7 +413,7 @@
                                             </div>
                                             <div class="col-4 text-center">
                                                 <p>------------</p>
-                                                <p><span id="IdleDmg_Cost">30</span> pix</p>
+                                                <p><span id="IdleDmg_Cost">70</span> pix</p>
                                                 <p>------------</p>
                                             </div>
                                         </div>
@@ -431,7 +459,7 @@
 
             var AutoGuardado = setInterval(function () {
                 Guardado();
-            }, 10000);
+            }, 30000);
         });
     </script>
 </body>

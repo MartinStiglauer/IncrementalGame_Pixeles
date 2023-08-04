@@ -1,3 +1,6 @@
+//VariablesGlobales
+var Interval
+
 //Click Function
 function Pixel(px, dmg) {
     if (dmg == null) {
@@ -17,6 +20,8 @@ function Pixel(px, dmg) {
 
         $('.Cuadrado').attr('property', parseInt($('.Cuadrado').attr('property')) - 1)
 
+        $("#PixelToNextLvl").text($('.Cuadrado').attr('property'));
+
         if ($('.Cuadrado').attr('property') == "0") {
             $('.Ticado').addClass('Pixel');
             $('.Ticado').removeClass('Ticado');
@@ -27,10 +32,22 @@ function Pixel(px, dmg) {
 
             $(".Cuadrado").attr("title", parseInt($(".Cuadrado").attr("title")) + 1)
 
-            $("#Nivel").text($(".Cuadrado").attr("title"));
-            $('.Pixel').text($(".Cuadrado").attr("title"));
+            var NivelActual = $(".Cuadrado").attr("title");
 
+            $("#Nivel").text(NivelActual);
+            $('.Pixel').text(NivelActual);
+
+
+            if (NivelActual == 10){
+                ComenzarPixCoins();
+            }
+
+            if (NivelActual > 10){
+                AñadirPixCoins(NivelActual / 250 * 1.23);
+            }
+            
             Guardado()
+            return true;
         }
     } else {
         $(px).text(Health);
@@ -44,14 +61,14 @@ function ActiveDmg() {
     if (parseInt($("#Pixeles").text()) >= parseInt($("#Dano_Cost").text())) {
         DescontarPixeles(parseInt($("#Dano_Cost").text()));
         $("#Dano").text(parseInt($("#Dano").text()) + 1)
-        ActualizarPrecio("Dano_Cost");
+        ActualizarPrecio("Dano_Cost",1.12);
     }
 }
 function ActiveMultiClick() {
     if (parseInt($("#Pixeles").text()) >= parseInt($("#ExtraHits_Cost").text())) {
         DescontarPixeles(parseInt($("#ExtraHits_Cost").text()));
         $("#ExtraHits").text(parseInt($("#ExtraHits").text()) + 1)
-        ActualizarPrecio("ExtraHits_Cost");
+        ActualizarPrecio("ExtraHits_Cost",1.12);
     }
 }
 
@@ -62,57 +79,96 @@ function IdleHitters() {
     if (parseInt($("#Pixeles").text()) >= parseInt($("#IdleHitters_Cost").text())) {
         DescontarPixeles(parseInt($("#IdleHitters_Cost").text()));
         $("#IdleHitters").text(parseInt($("#IdleHitters").text()) + 1)
-        ActualizarPrecio("IdleHitters_Cost");
+        ActualizarPrecio("IdleHitters_Cost",1.12);
     }
 }
 function IdleHittersDmg() {
     if (parseInt($("#Pixeles").text()) >= parseInt($("#IdleDmg_Cost").text())) {
         DescontarPixeles(parseInt($("#IdleDmg_Cost").text()));
         $("#IdleDmg").text(parseInt($("#IdleDmg").text()) + 1)
-        ActualizarPrecio("IdleDmg_Cost");
+        ActualizarPrecio("IdleDmg_Cost",1.25);
     }
 }
 function IdleHittersCrit() {
     if (parseInt($("#Pixeles").text()) >= parseInt($("#IdleCritHit_Cost").text())) {
         DescontarPixeles(parseInt($("#IdleCritHit_Cost").text()));
         $("#IdleCritHit").text(parseInt($("#IdleCritHit").text()) + 1)
-        ActualizarPrecio("IdleCritHit_Cost");
+        ActualizarPrecio("IdleCritHit_Cost",1.15);
+    }
+}
+
+//PixCoins
+function ComenzarPixCoins() {
+    $("#Interrogations").addClass("Ocultar");
+    $("#PixCoins").removeClass("Ocultar");
+    $("#Btn-ResetGame").removeClass("Ocultar");
+}
+
+function AñadirPixCoins(PC) {
+    var NextPixCoins = parseFloat($("#NextPixCoins").text()) + PC;
+    $("#NextPixCoins").text(NextPixCoins.toFixed(2));
+}
+
+function ResetGame(){
+    if (confirm("On reset you will get " + $("#NextPixCoins").text() + " PixCoins. This will reset all progres except PixCoins and PixCoins Upgrades. Reset?" )) {
+        var NextPixCoins = parseFloat($("#NextPixCoins").text());
+        if (NextPixCoins != 0 && NextPixCoins != '' && NextPixCoins != null && NextPixCoins != 'NaN') {
+            $("#ActualPixCoins").text(NextPixCoins.toFixed(2));
+            $("#PixCoinsUpgrades").removeClass("Ocultar");
+            
+            ValoresDefault();
+        }
+    }
+}
+
+function IdleHittersInterval(){
+    if (parseInt($("#ActualPixCoins").text()) >= parseInt($("#IdleHittersInterval_Cost").text())) {
+        DescontarPixCoins(parseInt($("#IdleHittersInterval_Cost").text()));
+        $("#IdleHittersInterval").text(parseFloat($("#IdleHittersInterval").text()) - 0.1)
+        ActualizarPrecioFloat("IdleHittersInterval_Cost",1.43);
+
+        var ms = parseFloat($("#IdleHittersInterval").text()) * 1000;
+        ModificarInterval(ms);
     }
 }
 
 //Funcionalidades
-
 function DescontarPixeles(value) {
     $("#Pixeles").text(parseInt($("#Pixeles").text()) - value)
 }
 
-function ActualizarPrecio(id) {
-    $("#" + id).text(Math.round(parseInt($("#" + id).text()) * 1.12));
+function ActualizarPrecio(id,porc) {
+    $("#" + id).text(Math.round(parseInt($("#" + id).text()) * porc));
+}
+
+function ActualizarPrecioFloat(id,porc) {
+    $("#" + id).text((parseFloat($("#" + id).text()) * porc).toFixed(2));
+}
+
+function DescontarPixCoins(value) {
+    $("#ActualPixCoins").text(parseFloat($("#ActualPixCoins").text()) - value)
 }
 
 function ModificarInterval(ms) {
     clearInterval(Interval);
-    var Interval = setInterval(function () {
+    Interval = setInterval(function () {
         var IdleHitters = parseInt($("#IdleHitters").text());
         for (var i = 0; i < IdleHitters; i += 1) {
             var randomIndex = Math.floor(Math.random() * $('.Pixel').length);
             var dmg = parseInt($("#IdleDmg").text());
 
             var Perc = $("#IdleCritHit").text();
-            //cambiar esto a Perc/100
-            if (Perc.length == 1) {
-                Perc = "0.0" + Perc
-            } else if (Perc.length == 2) {
-                Perc = "0." + Perc
-            } else if (Perc.length == 3) {
-                Perc = Perc
-            }
+            Perc = parseFloat(parseInt($("#IdleCritHit").text())/100)
 
             if (Math.random() < Perc) {
                 dmg = dmg * 2;
             }
 
-            Pixel($('.Pixel')[randomIndex], dmg);
+            var Completo = Pixel($('.Pixel')[randomIndex], dmg);
+
+            if (Completo){
+                break;
+            }
         }
     }, ms);
 }
@@ -121,12 +177,12 @@ function setCookie(cname, cvalue, exdays) {
     const d = new Date();
     d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
     let expires = "expires=" + d.toUTCString();
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/;domain=" + window.location.hostname;
+    $.cookie = cname + "=" + cvalue + ";" + expires + ";path=/;domain=" + window.location.hostname;
 }
 
 function getCookie(cname) {
     let name = cname + "=";
-    let decodedCookie = decodeURIComponent(document.cookie);
+    let decodedCookie = decodeURIComponent($.cookie);
     let ca = decodedCookie.split(';');
     for (let i = 0; i < ca.length; i++) {
         let c = ca[i];
@@ -166,6 +222,16 @@ function Guardado() {
     var IdleCritHit_Cost = $("#IdleCritHit_Cost").text();
     setCookie("IdleCritHit_Cost", IdleCritHit_Cost, 365);
 
+    var ActualPixCoins = $("#ActualPixCoins").text();
+    setCookie("ActualPixCoins", ActualPixCoins, 365);
+    var NextPixCoins = $("#NextPixCoins").text();
+    setCookie("NextPixCoins", NextPixCoins, 365);
+
+    var IdleHittersInterval = $("#IdleHittersInterval").text();
+    setCookie("IdleHittersInterval", IdleHittersInterval, 365);
+    var IdleHittersInterval_Cost = $("#IdleHittersInterval_Cost").text();
+    setCookie("IdleHittersInterval_Cost", IdleHittersInterval_Cost, 365);
+
     console.log("Guardado Automatico");
 }
 
@@ -186,11 +252,50 @@ function RecuperarGuardado() {
 
     $("#IdleCritHit").text(getCookie("IdleCritHit"));
     $("#IdleCritHit_Cost").text(getCookie("IdleCritHit_Cost"));
+
+
+    var ActPixCoins = getCookie("ActualPixCoins");
+    var NxtPixCoins = getCookie("NextPixCoins");
+    if (ActPixCoins != 0) {
+        ComenzarPixCoins();
+        $("#PixCoinsUpgrades").removeClass("Ocultar");
+        $("#ActualPixCoins").text(getCookie("ActualPixCoins"));
+    }
+    if (NxtPixCoins != 0) {
+        ComenzarPixCoins();
+        $("#NextPixCoins").text(getCookie("NextPixCoins"));
+    }
+
+    $("#IdleHittersInterval").text(getCookie("IdleHittersInterval"));
+    $("#IdleHittersInterval_Cost").text(getCookie("IdleHittersInterval_Cost"));
 }
 
 function HardReset() {
     if(confirm("Esta seguro de eliminar todo?")){
-        document.cookie='';
+        var cookies = $.cookie();
+        for(var cookie in cookies) {
+        $.removeCookie(cookie);
+        }
         location.reload();
     }
+}
+
+function ValoresDefault() {
+    $("#Pixeles").text(0);
+    $("#Nivel").text(1);
+    $(".Cuadrado").attr("title", 1);
+
+    $("#Dano").text(1);
+    $("#Dano_Cost").text(12);
+
+    $("#IdleHitters").text(1);
+    $("#IdleHitters_Cost").text(20);
+
+    $("#IdleDmg").text(1);
+    $("#IdleDmg_Cost").text(70);
+
+    $("#IdleCritHit").text(0);
+    $("#IdleCritHit_Cost").text(50);
+
+    Guardado();
 }
