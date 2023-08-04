@@ -329,7 +329,7 @@ function ObtenerVisitas(){
         crossDomain: true,
         type: 'GET',
         data: { app: 'IncrementalGame_Pixels' },
-        success: function (Data) {
+        success: function (data) {
             var Totales = 0;
             $("#Visitas").append("<p>Totals: " + Totales + "</p>")
             for (var i = 0; i < data.length; i += 1) {
