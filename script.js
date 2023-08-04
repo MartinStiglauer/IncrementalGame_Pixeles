@@ -331,11 +331,13 @@ function ObtenerVisitas(){
         data: { app: 'IncrementalGame_Pixels' },
         success: function (data) {
             var Totales = 0;
-            $("#Visitas").append("<p>Totals: " + Totales + "</p>")
+            
             for (var i = 0; i < data.length; i += 1) {
                 Totales += data[i].visitas;
                 $("#Visitas").append("<p>" + data[i].country + ": " + data[i].visitas + "</p>")
             }
+
+            $("#Visitas").append("<p>Totals: " + Totales + "</p>")
         }
     });
 }
