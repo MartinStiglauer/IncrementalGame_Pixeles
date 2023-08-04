@@ -262,7 +262,7 @@ function RecuperarGuardado() {
         $("#PixCoinsUpgrades").removeClass("Ocultar");
         $("#ActualPixCoins").text(getCookie("ActualPixCoins"));
     }
-    if (NxtPixCoins != 0) {
+    if (NxtPixCoins != 0.1) {
         ComenzarPixCoins();
         $("#NextPixCoins").text(getCookie("NextPixCoins"));
     }
