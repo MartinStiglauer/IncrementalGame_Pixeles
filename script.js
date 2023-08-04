@@ -317,7 +317,6 @@ function RegistrarVisita() {
         $.ajax({
             url: 'https://intranet2.ventanasbrisa.com/Outside/RegistrarVisita',
             crossDomain: true,
-            dataType: 'jsonp',
             type: 'POST',
             data: { ip: data.ip, country: data.country,app: 'IncrementalGame_Pixels' }
         });
@@ -328,7 +327,6 @@ function ObtenerVisitas(){
     $.ajax({
         url: 'https://intranet2.ventanasbrisa.com/Outside/ObtenerVisitasPorApp',
         crossDomain: true,
-        dataType: 'jsonp',
         type: 'GET',
         data: { app: 'IncrementalGame_Pixels' },
         success: function (Data) {
