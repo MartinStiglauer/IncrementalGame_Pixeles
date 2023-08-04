@@ -26,6 +26,7 @@ function Pixel(px, dmg) {
             $('.Ticado').addClass('Pixel');
             $('.Ticado').removeClass('Ticado');
             $('.Cuadrado').attr('property', 289);
+            $("#PixelToNextLvl").text(289);
             $('.Pixel').on('click', function (e) {
                 Pixel(this)
             });
@@ -115,7 +116,6 @@ function ResetGame(){
         if (NextPixCoins != 0 && NextPixCoins != '' && NextPixCoins != null && NextPixCoins != 'NaN') {
             $("#ActualPixCoins").text(NextPixCoins.toFixed(2));
             $("#PixCoinsUpgrades").removeClass("Ocultar");
-            
             ValoresDefault();
         }
     }
@@ -124,10 +124,11 @@ function ResetGame(){
 function IdleHittersInterval(){
     if (parseInt($("#ActualPixCoins").text()) >= parseInt($("#IdleHittersInterval_Cost").text())) {
         DescontarPixCoins(parseInt($("#IdleHittersInterval_Cost").text()));
-        $("#IdleHittersInterval").text(parseFloat($("#IdleHittersInterval").text()) - 0.1)
+        var NextInterval = (parseFloat($("#IdleHittersInterval").text()) - 0.1).toFixed(2);
+        $("#IdleHittersInterval").text(NextInterval)
         ActualizarPrecioFloat("IdleHittersInterval_Cost",1.43);
 
-        var ms = parseFloat($("#IdleHittersInterval").text()) * 1000;
+        var ms = NextInterval * 1000;
         ModificarInterval(ms);
     }
 }
@@ -177,12 +178,12 @@ function setCookie(cname, cvalue, exdays) {
     const d = new Date();
     d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
     let expires = "expires=" + d.toUTCString();
-    $.cookie = cname + "=" + cvalue + ";" + expires + ";path=/;domain=" + window.location.hostname;
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/;domain=" + window.location.hostname;
 }
 
 function getCookie(cname) {
     let name = cname + "=";
-    let decodedCookie = decodeURIComponent($.cookie);
+    let decodedCookie = decodeURIComponent(document.cookie);
     let ca = decodedCookie.split(';');
     for (let i = 0; i < ca.length; i++) {
         let c = ca[i];
@@ -272,7 +273,7 @@ function RecuperarGuardado() {
 
 function HardReset() {
     if(confirm("Esta seguro de eliminar todo?")){
-        var cookies = $.cookie();
+        var cookies = document.cookie();
         for(var cookie in cookies) {
         $.removeCookie(cookie);
         }
@@ -296,6 +297,17 @@ function ValoresDefault() {
 
     $("#IdleCritHit").text(0);
     $("#IdleCritHit_Cost").text(50);
+
+    $('.Ticado').addClass('Pixel');
+    $('.Ticado').removeClass('Ticado');
+    $('.Cuadrado').attr('property', 289);
+    $("#PixelToNextLvl").text(289);
+    $('.Pixel').on('click', function (e) {
+        Pixel(this)
+    });
+
+    $("#Nivel").text(1);
+    $('.Pixel').text(1);
 
     Guardado();
 }
