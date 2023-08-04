@@ -275,7 +275,7 @@ function HardReset() {
     if(confirm("Esta seguro de eliminar todo?")){
         var cookies = document.cookie();
         for(var cookie in cookies) {
-        $.removeCookie(cookie);
+        document.removeCookie(cookie);
         }
         location.reload();
     }
@@ -310,4 +310,30 @@ function ValoresDefault() {
     $('.Pixel').text(1);
 
     Guardado();
+}
+
+function RegistrarVisita() {
+    $.getJSON("https://jsonip.com?callback=?", function (data) {
+        $.ajax({
+            url: 'https://intranet2.ventanasbrisa.com/Outside/RegistrarVisita',
+            type: 'POST',
+            data: { ip: data.ip, country: data.country,app: 'IncrementalGame_Pixels' }
+        });
+	});
+}
+
+function ObtenerVisitas(){
+    $.ajax({
+        url: 'https://intranet2.ventanasbrisa.com/Outside/ObtenerVisitasPorApp',
+        type: 'GET',
+        data: { app: 'IncrementalGame_Pixels' },
+        success: function (Data) {
+            var Totales = 0;
+            $("#Visitas").append("<p>Totals: " + Totales + "</p>")
+            for (var i = 0; i < data.length; i += 1) {
+                Totales += data[i].visitas;
+                $("#Visitas").append("<p>" + data[i].country + ": " + data[i].visitas + "</p>")
+            }
+        }
+    });
 }
