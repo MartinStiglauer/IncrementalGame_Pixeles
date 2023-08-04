@@ -316,6 +316,11 @@ function RegistrarVisita() {
     $.getJSON("https://jsonip.com?callback=?", function (data) {
         $.ajax({
             url: 'https://intranet2.ventanasbrisa.com/Outside/RegistrarVisita',
+            Headers: {
+                "Access-Control-Allow-Headers" : "Content-Type",
+                "Access-Control-Allow-Origin": "https://intranet2.ventanasbrisa.com",
+                "Access-Control-Allow-Methods": "OPTIONS,POST,GET"
+            },
             type: 'POST',
             data: { ip: data.ip, country: data.country,app: 'IncrementalGame_Pixels' }
         });
@@ -325,6 +330,11 @@ function RegistrarVisita() {
 function ObtenerVisitas(){
     $.ajax({
         url: 'https://intranet2.ventanasbrisa.com/Outside/ObtenerVisitasPorApp',
+        Headers: {
+            "Access-Control-Allow-Headers" : "Content-Type",
+            "Access-Control-Allow-Origin": "https://intranet2.ventanasbrisa.com",
+            "Access-Control-Allow-Methods": "OPTIONS,POST,GET"
+        },
         type: 'GET',
         data: { app: 'IncrementalGame_Pixels' },
         success: function (Data) {
