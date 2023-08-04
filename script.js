@@ -39,11 +39,11 @@ function Pixel(px, dmg) {
             $('.Pixel').text(NivelActual);
 
 
-            if (NivelActual == 10){
+            if (NivelActual == 5){
                 ComenzarPixCoins();
             }
 
-            if (NivelActual > 10){
+            if (NivelActual > 5){
                 AñadirPixCoins(NivelActual / 250 * 1.23);
             }
             
@@ -122,8 +122,8 @@ function ResetGame(){
 }
 
 function IdleHittersInterval(){
-    if (parseInt($("#ActualPixCoins").text()) >= parseInt($("#IdleHittersInterval_Cost").text())) {
-        DescontarPixCoins(parseInt($("#IdleHittersInterval_Cost").text()));
+    if (parseFloat($("#ActualPixCoins").text()) >= parseFloat($("#IdleHittersInterval_Cost").text())) {
+        DescontarPixCoins(parseFloat($("#IdleHittersInterval_Cost").text()));
         var NextInterval = (parseFloat($("#IdleHittersInterval").text()) - 0.1).toFixed(2);
         $("#IdleHittersInterval").text(NextInterval)
         ActualizarPrecioFloat("IdleHittersInterval_Cost",1.43);
@@ -147,7 +147,8 @@ function ActualizarPrecioFloat(id,porc) {
 }
 
 function DescontarPixCoins(value) {
-    $("#ActualPixCoins").text(parseFloat($("#ActualPixCoins").text()) - value)
+    var NewValue = (parseFloat($("#ActualPixCoins").text()) - value).toFixed(2);
+    $("#ActualPixCoins").text(NewValue)
 }
 
 function ModificarInterval(ms) {
@@ -305,6 +306,8 @@ function ValoresDefault() {
     $('.Pixel').on('click', function (e) {
         Pixel(this)
     });
+
+    $("#NextPixCoins").text('0')
 
     $("#Nivel").text(1);
     $('.Pixel').text(1);
