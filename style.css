@@ -61,6 +61,7 @@ p {
     padding-top: 5px;
     width: 90%;
     aspect-ratio: 1;
+    font-size: 12px;
     margin-left: 5%;
     border: 2px solid blue;
     background-color: #3a3afd;
