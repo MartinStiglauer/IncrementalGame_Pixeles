@@ -156,6 +156,8 @@
             var PixelesInicio = getCookie("Pixeles");
             if (PixelesInicio != null && PixelesInicio != '' && PixelesInicio != 'NaN') {
                 RecuperarGuardado();
+            } else {
+                ModificarInterval(5000);
             }
 
             $('.Pixel').text($(".Cuadrado").attr("title"));
@@ -163,8 +165,6 @@
             $('.Pixel').on('click', function (e) {
                 Pixel(this)
             });
-            
-            ModificarInterval(5000);
 
             var AutoGuardado = setInterval(function () {
                 Guardado();
