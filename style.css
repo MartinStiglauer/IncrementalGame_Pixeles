@@ -52,39 +52,34 @@
     cursor: pointer;
 }
 
+.Coste {
+    margin-top: 10px;
+    height: 60px;
+    width: 90%;
+    border: 1px dashed #5dedfb;
+    vertical-align: middle;
+    line-height: 55px;
+}
+
 p {
     margin-bottom: 0px !important;
     margin-left: 10px;
 }
 
 .Cuadrado {
-    padding-top: 5px;
-    width: 90%;
     aspect-ratio: 1;
-    font-size: 12px;
-    margin-left: 5%;
+    margin-left: 4%; 
     border: 2px solid blue;
     background-color: #3a3afd;
+    color: #5dedfb;
 }
 
 .Pixel {
-    /*border: 1px solid black;*/
     background-color: #031683;
-    width: 5%;
-    aspect-ratio: 1;
-    display: inline-block;
-    overflow: auto;
-    color: #5dedfb;
 }
 
 .Ticado {
-    /*border: 1px solid black;*/
-    width: 5%;
-    aspect-ratio: 1;
-    display: inline-block;
     background-color: #3f2dff;
-    overflow: auto;
-    color: #5dedfb;
 }
 
 .Disabled {
@@ -95,3 +90,15 @@ p {
 .Ocultar {
     display: none;
 }
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(17, 1fr);
+    grid-template-rows: repeat(17, 1fr);
+    gap: 1px;
+  }
+
+  .grid-item {
+    width: 100%;
+    padding: 5px;
+  }
