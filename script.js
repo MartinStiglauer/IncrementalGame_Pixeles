@@ -269,6 +269,7 @@ function RecuperarGuardado() {
     }
 
     $("#IdleHittersInterval").text(getCookie("IdleHittersInterval"));
+    ModificarInterval($("#IdleHittersInterval").text() * 1000)
     $("#IdleHittersInterval_Cost").text(getCookie("IdleHittersInterval_Cost"));
 }
 
