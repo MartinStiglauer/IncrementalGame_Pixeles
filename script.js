@@ -316,32 +316,32 @@ function ValoresDefault() {
     Guardado();
 }
 
-function RegistrarVisita() {
-    $.getJSON("https://jsonip.com?callback=?", function (data) {
-        $.ajax({
-            url: 'https://intranet2.ventanasbrisa.com/Outside/RegistrarVisita',
-            crossDomain: true,
-            type: 'POST',
-            data: { ip: data.ip, country: data.country,app: 'IncrementalGame_Pixels' }
-        });
-	});
-}
+// function RegistrarVisita() {
+//     $.getJSON("https://jsonip.com?callback=?", function (data) {
+//         $.ajax({
+//             url: 'https://intranet2.ventanasbrisa.com/Outside/RegistrarVisita',
+//             crossDomain: true,
+//             type: 'POST',
+//             data: { ip: data.ip, country: data.country,app: 'IncrementalGame_Pixels' }
+//         });
+// 	});
+// }
 
-function ObtenerVisitas(){
-    $.ajax({
-        url: 'https://intranet2.ventanasbrisa.com/Outside/ObtenerVisitasPorApp',
-        crossDomain: true,
-        type: 'GET',
-        data: { app: 'IncrementalGame_Pixels' },
-        success: function (data) {
-            var Totales = 0;
+// function ObtenerVisitas(){
+//     $.ajax({
+//         url: 'https://intranet2.ventanasbrisa.com/Outside/ObtenerVisitasPorApp',
+//         crossDomain: true,
+//         type: 'GET',
+//         data: { app: 'IncrementalGame_Pixels' },
+//         success: function (data) {
+//             var Totales = 0;
             
-            for (var i = 0; i < data.length; i += 1) {
-                Totales += data[i].visitas;
-                $("#Visitas").append("<p>" + data[i].country + ": " + data[i].visitas + "</p>")
-            }
+//             for (var i = 0; i < data.length; i += 1) {
+//                 Totales += data[i].visitas;
+//                 $("#Visitas").append("<p>" + data[i].country + ": " + data[i].visitas + "</p>")
+//             }
 
-            $("#Visitas").append("<p>Totals: " + Totales + "</p>")
-        }
-    });
-}
+//             $("#Visitas").append("<p>Totals: " + Totales + "</p>")
+//         }
+//     });
+// }
