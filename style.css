@@ -17,17 +17,18 @@
 }
 
 .Subtitulo {
-    font-size: 10px;
+    font-size: calc((1vw + 1vh) / 2);
     margin-left: 20px;
 }
 
 .btn {
     height: 100%;
-    width: 200px;
+    width: 100%;
+    font-size: calc((3vw + 3vh) / 2);
 }
 
 .Titles {
-    height: 40px;
+    /* height: 40px; */
     width: 100%;
     text-align: center;
     border: 2px solid blue;
@@ -40,7 +41,7 @@
 }
 
 .Mejoras {
-    height: 80px;
+    height: 10vh;
     width: 100%;
     border: 2px solid blue;
     border-radius: 5px;
@@ -52,13 +53,22 @@
     cursor: pointer;
 }
 
+.Titulo {
+    font-size: calc((2vw + 2vh) / 2);
+}
+
+.Incremento, .Total {
+    font-size: calc((1vw + 1vh) / 2);
+}
+
 .Coste {
-    margin-top: 10px;
-    height: 60px;
+    margin-top: 1vh;
+    height: 8vh;
     width: 90%;
     border: 1px dashed #5dedfb;
     vertical-align: middle;
-    line-height: 55px;
+    line-height: 5.5vh;
+    font-size: calc((1vw + 1vh) / 2);
 }
 
 p {
@@ -76,6 +86,7 @@ p {
 
 .Pixel {
     background-color: #031683;
+    font-size: calc((1vw + 1vh) / 2);
 }
 
 .Ticado {
@@ -96,9 +107,18 @@ p {
     grid-template-columns: repeat(17, 1fr);
     grid-template-rows: repeat(17, 1fr);
     gap: 1px;
-  }
+}
 
-  .grid-item {
+.grid-item {
     width: 100%;
-    padding: 5px;
-  }
+    /* padding: 5px; */
+    font-size: calc((0.4vw + 0.4vh) / 2);
+}
+
+h3 {
+    font-size: calc((3vw + 3vh) / 2);
+}
+
+#Interrogations, #PixCoins {
+    font-size: calc((2vw + 2vh) / 2);
+}
