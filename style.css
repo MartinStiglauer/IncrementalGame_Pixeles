@@ -111,8 +111,7 @@ p {
 
 .grid-item {
     width: 100%;
-    /* padding: 5px; */
-    font-size: calc((0.4vw + 0.4vh) / 2);
+    padding: calc((0.4vw + 0.4vh) / 2);
 }
 
 h3 {
